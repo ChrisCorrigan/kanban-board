@@ -1,10 +1,8 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 
 function HomePageView() {
   return (
     <div className="flex flex-col h-screen">
-      <Navbar />
       <header className="bg-blue-500 text-white text-center p-12">
         <h1>Welcome to my Kanban App</h1>
       </header>
