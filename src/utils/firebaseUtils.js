@@ -1,19 +1,43 @@
-import db from "./firebase";
+import { app, db, auth } from "./firebaseConfig";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
-export const createBoard = async (title) => {
-  const boardRef = await db.collection("boards").add({ title });
-  return boardRef.id;
+export const createBoard = async (boardData) => {
+  // Add a new board with a generated ID
+  const docRef = await addDoc(collection(db, "boards"), boardData);
+  return docRef.id;
 };
 
 export const getBoards = async () => {
-  const snapshot = await db.collection("boards").get();
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const querySnapshot = await db.collection("boards").get();
+  const boards = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return boards;
 };
 
-const updateBoardTitle = async (boardId, newTitle) => {
-  await db.collection("boards").doc(boardId).update({ title: newTitle });
-};
-
-const deleteBoard = async (boardId) => {
+export const deleteBoard = async (boardId) => {
   await db.collection("boards").doc(boardId).delete();
+};
+
+// Authentication-related functions
+export const onAuthStateChanged = (callback) => {
+  return auth.onAuthStateChanged(callback);
+};
+
+export const signup = (email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const login = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
+export const logout = () => {
+  return signOut(auth);
 };
