@@ -1,3 +1,24 @@
+# This is a project to help me learn and practice modern web app development. It will utilize:
+
+- React.js
+- React router
+- Firebase for data storage
+- Tailwind for styling
+- jest for testing
+- github actions for deployment and continuous integration
+- user authentication
+- react-beautiful-dnd for drag/drop functionality
+
+- Kanban features:
+- multiple boards
+- boards contain lists
+- lists contain cards
+
+- card features:
+- task list
+- description, title, date
+- more as I think of it/get to it
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
