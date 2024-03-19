@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-import { signOut } from "../utils/firebaseUtils";
+import { logOut } from "../utils/firebaseUtils";
 
 function Header() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Header() {
               </Link>
               <button
                 onClick={() => {
-                  signOut();
+                  logOut();
                   navigate("/");
                 }}
                 className="p-4"

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { signUpWithEmailAndPassword } from "../../utils/firebaseUtils";
+import { signUp } from "../../utils/firebaseUtils";
 
 function Signup() {
   const { userLoggedIn } = useAuth();
@@ -17,7 +17,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await signUpWithEmailAndPassword(email, password);
+      await signUp(email, password);
       navigate("/home");
     } catch (error) {
       setError(error.message);

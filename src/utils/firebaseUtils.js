@@ -1,4 +1,4 @@
-import { app, db, auth } from "./firebaseConfig";
+import { app, db, auth } from "../firebaseConfig";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
@@ -30,28 +30,28 @@ export const onAuthStateChanged = (callback) => {
   return auth.onAuthStateChanged(callback);
 };
 
-export const signup = async (email, password) => {
+export const signUp = async (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const login = (email, password) => {
+export const signIn = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-export const logout = () => {
+export const logOut = () => {
   return signOut(auth);
 };
 
-export const passwordReset = (email) => {
-  return sendPasswordResetEmail(auth, email);
-};
+// export const passwordReset = (email) => {
+//   return sendPasswordResetEmail(auth, email);
+// };
 
-export const changePassword = (password) => {
-  return updatePassword(auth.currentUser, password);
-};
+// export const changePassword = (password) => {
+//   return updatePassword(auth.currentUser, password);
+// };
 
-export const verifyEmail = () => {
-  return sendEmailVerification(auth.currentUser, {
-    url: `${window.location.origin}/home`,
-  });
-};
+// export const verifyEmail = () => {
+//   return sendEmailVerification(auth.currentUser, {
+//     url: `${window.location.origin}/home`,
+//   });
+// };

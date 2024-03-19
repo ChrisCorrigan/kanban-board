@@ -2,15 +2,15 @@ import { AuthProvider } from "./context/authContext";
 import { useRoutes } from "react-router-dom";
 
 import Header from "./components/Header";
-import Home from "./pages/home";
-import SignUp from "./pages/signup";
-import Login from "./pages/login";
+import Home from "./pages/Home";
+import SignUp from "./pages/Signup";
+import SignIn from "./pages/Signin";
 
 function App() {
   const routes = useRoutes([
-    { path: "/", element: <Login /> },
+    { path: "/", element: <SignIn /> },
     { path: "/signup", element: <SignUp /> },
-    { path: "/login", element: <Login /> },
+    { path: "/login", element: <SignIn /> },
     { path: "/home", element: <Home /> },
   ]);
 
