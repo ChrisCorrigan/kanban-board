@@ -30,7 +30,7 @@ export const onAuthStateChanged = (callback) => {
   return auth.onAuthStateChanged(callback);
 };
 
-export const signup = (email, password) => {
+export const signup = async (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
@@ -40,4 +40,18 @@ export const login = (email, password) => {
 
 export const logout = () => {
   return signOut(auth);
+};
+
+export const passwordReset = (email) => {
+  return sendPasswordResetEmail(auth, email);
+};
+
+export const changePassword = (password) => {
+  return updatePassword(auth.currentUser, password);
+};
+
+export const verifyEmail = () => {
+  return sendEmailVerification(auth.currentUser, {
+    url: `${window.location.origin}/home`,
+  });
 };
