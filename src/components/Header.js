@@ -1,24 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
+import { signOut } from "../utils/firebaseUtils";
 
 function Header() {
+  const navigate = useNavigate();
+  const { userLoggedIn } = useAuth();
+
   return (
     <nav className="bg-gray-800 p-4 text-white">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">
-          Kanban App
-        </Link>
-        <div>
-          <Link to="/signup" className="mr-4 hover:text-gray-300">
-            Sign Up
-          </Link>
-          <Link to="/login" className="hover:text-gray-300">
-            Login
-          </Link>
-          <Link to="/logout" className="hover:text-gray-300">
-            Logout
-          </Link>
-        </div>
+        <nav className="flex">
+          {userLoggedIn ? (
+            <>
+              <Link to="/" className="p-4">
+                Home
+              </Link>
+              <button
+                onClick={() => {
+                  signOut();
+                  navigate("/");
+                }}
+                className="p-4"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="p-4">
+                Login
+              </Link>
+              <Link to="/signup" className="p-4">
+                Register for a new account
+              </Link>
+            </>
+          )}
+        </nav>
       </div>
     </nav>
   );
