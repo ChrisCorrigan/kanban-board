@@ -10,8 +10,8 @@ function Dashboard() {
     // Fetch the user's boards from the database and set them in state
     // This is just a placeholder, you'll need to implement the actual data fetching
     const fetchedBoards = [
-      { id: "1", name: "Board 1" },
-      { id: "2", name: "Board 2" },
+      { id: "1", title: "Board 1" },
+      { id: "2", title: "Board 2" },
     ];
     setBoards(fetchedBoards);
   }, []);
