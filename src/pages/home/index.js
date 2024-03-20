@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/authContext";
+import HomePageView from "../../views/HomePageView";
 
 function Home() {
   const { userLoggedIn } = useAuth();
@@ -8,9 +9,11 @@ function Home() {
     <div>
       <h1>Welcome to the Home Page</h1>
       <p>
-        {userLoggedIn
-          ? "You are logged in! You can now access your dashboard."
-          : "You are not logged in! Please log in to access your dashboard."}
+        {userLoggedIn ? (
+          "You are logged in! You can now access your dashboard.!"
+        ) : (
+          <HomePageView />
+        )}
       </p>
     </div>
   );
