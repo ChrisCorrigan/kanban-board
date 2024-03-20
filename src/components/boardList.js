@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getBoards } from "./firebaseUtils";
+import { getBoards } from "../utils/firebaseUtils";
 
 const BoardList = () => {
   const [boards, setBoards] = useState([]);
@@ -24,3 +24,5 @@ const BoardList = () => {
     </div>
   );
 };
+
+export default BoardList;
