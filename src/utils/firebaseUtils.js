@@ -1,5 +1,5 @@
 import { app, db, auth } from "../firebaseConfig";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, doc, addDoc, getDocs, getDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,20 +9,30 @@ import {
 export const createBoard = async (boardData) => {
   // Add a new board with a generated ID
   const docRef = await addDoc(collection(db, "boards"), boardData);
+
   return docRef.id;
 };
 
 export const getBoards = async () => {
-  const querySnapshot = await db.collection("boards").get();
+  const querySnapshot = await getDocs(collection(db, "boards"));
   const boards = querySnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   }));
+
+  console.log(boards);
   return boards;
 };
 
-export const deleteBoard = async (boardId) => {
-  await db.collection("boards").doc(boardId).delete();
+export const getBoard = async (id) => {
+  const docRef = doc(db, "boards", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error("No board found with the given id");
+  }
+
+  return { id: docSnap.id, ...docSnap.data() };
 };
 
 // Authentication-related functions

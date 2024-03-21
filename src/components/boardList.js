@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const BoardList = ({ boards }) => {
   return (
@@ -6,7 +7,11 @@ const BoardList = ({ boards }) => {
       <h2>Boards</h2>
       <ul>
         {boards.map((board) => {
-          return <li key={board.id}>{board.title}</li>;
+          return (
+            <li key={board.id}>
+              <Link to={`/board/${board.id}`}>{board.title}</Link>
+            </li>
+          );
         })}
       </ul>
     </div>
