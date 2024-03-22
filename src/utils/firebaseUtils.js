@@ -1,4 +1,4 @@
-import { app, db, auth } from "../firebaseConfig";
+import { app, db, auth } from "../firebase.config";
 import { collection, doc, addDoc, getDocs, getDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
