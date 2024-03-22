@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { createBoard } from "../../utils/firebaseUtils";
+import { useNavigate } from "react-router-dom";
 
 const CreateBoard = () => {
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       await createBoard({ title });
-      //   setTitle("");
+      setTitle("");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
     }
