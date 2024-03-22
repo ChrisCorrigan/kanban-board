@@ -211,3 +211,6 @@ fabric.properties
 
 yarn.lock
 .vscode
+
+.env
+.firebase/
