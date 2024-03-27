@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 const CreateBoard = () => {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await createBoard({ title });
+      await createBoard({ title, description });
       setTitle("");
+      setDescription("");
       navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
@@ -28,6 +30,14 @@ const CreateBoard = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Description:
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>

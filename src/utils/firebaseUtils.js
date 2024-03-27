@@ -1,5 +1,6 @@
 import { app, db, auth } from "../firebase.config";
 import { collection, doc, addDoc, getDocs, getDoc } from "firebase/firestore";
+import { query, where } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,9 +9,14 @@ import {
 
 export const createBoard = async (boardData) => {
   // Add a new board with a generated ID
-  const docRef = await addDoc(collection(db, "boards"), boardData);
-
-  return docRef.id;
+  try {
+    const docRef = await addDoc(collection(db, "boards"), boardData);
+    // After the board is created, create a default list for the board
+    await createList({ title: "List Title", boardId: docRef.id });
+    return docRef.id;
+  } catch (error) {
+    console.error("Error creating board: ", error);
+  }
 };
 
 export const getBoards = async () => {
@@ -33,6 +39,26 @@ export const getBoard = async (id) => {
   }
 
   return { id: docSnap.id, ...docSnap.data() };
+};
+
+export const createList = async (listData) => {
+  // Add a new list with a generated ID
+  try {
+    await addDoc(collection(db, "lists"), listData);
+  } catch (error) {
+    console.error("Error creating list: ", error);
+  }
+};
+
+export const getLists = async (boardId) => {
+  const q = query(collection(db, "lists"), where("boardId", "==", boardId));
+  const querySnapshot = await getDocs(q);
+  const lists = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  return lists;
 };
 
 // Authentication-related functions

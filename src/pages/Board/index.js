@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBoard } from "../../utils/firebaseUtils";
+import { getBoard, getLists } from "../../utils/firebaseUtils";
 
 const Board = () => {
   const { id } = useParams();
   const [board, setBoard] = useState(null);
+  const [lists, setLists] = useState([]);
 
   useEffect(() => {
     getBoard(id)
       .then((boardData) => {
         setBoard(boardData);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+
+    getLists(id)
+      .then((listsData) => {
+        setLists(listsData);
       })
       .catch((error) => {
         console.log(error.message);
@@ -20,6 +29,11 @@ const Board = () => {
     <div>
       <h2>{board?.title}</h2>
       <p>{board?.description}</p>
+      {lists.map((list) => (
+        <div key={list.id}>
+          <h3>{list.title}</h3>
+        </div>
+      ))}
     </div>
   );
 };
