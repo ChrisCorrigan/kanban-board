@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getBoard, getLists } from "../../utils/firebaseUtils";
+import List from "../../components/List";
 
 const Board = () => {
   const { id } = useParams();
@@ -30,9 +31,7 @@ const Board = () => {
       <h2>{board?.title}</h2>
       <p>{board?.description}</p>
       {lists.map((list) => (
-        <div key={list.id}>
-          <h3>{list.title}</h3>
-        </div>
+        <List key={list.id} list={list} />
       ))}
     </div>
   );

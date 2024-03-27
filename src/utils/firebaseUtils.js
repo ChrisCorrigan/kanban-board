@@ -12,7 +12,16 @@ export const createBoard = async (boardData) => {
   try {
     const docRef = await addDoc(collection(db, "boards"), boardData);
     // After the board is created, create a default list for the board
-    await createList({ title: "List Title", boardId: docRef.id });
+    const listId = await createList({
+      title: "List Title",
+      boardId: docRef.id,
+    });
+    // After the list is created, create a default card for the list
+    await createCard({
+      title: "Card Title",
+      description: "Card Description",
+      listId,
+    });
     return docRef.id;
   } catch (error) {
     console.error("Error creating board: ", error);
@@ -44,7 +53,8 @@ export const getBoard = async (id) => {
 export const createList = async (listData) => {
   // Add a new list with a generated ID
   try {
-    await addDoc(collection(db, "lists"), listData);
+    const docRef = await addDoc(collection(db, "lists"), listData);
+    return docRef.id;
   } catch (error) {
     console.error("Error creating list: ", error);
   }
@@ -59,6 +69,48 @@ export const getLists = async (boardId) => {
   }));
 
   return lists;
+};
+
+export const getList = async (id) => {
+  const docRef = doc(db, "lists", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error("No list found with the given id");
+  }
+
+  return { id: docSnap.id, ...docSnap.data() };
+};
+
+export const createCard = async (cardData) => {
+  // Add a new card with a generated ID
+  try {
+    await addDoc(collection(db, "cards"), cardData);
+  } catch (error) {
+    console.error("Error creating card: ", error);
+  }
+};
+
+export const getCards = async (listId) => {
+  const q = query(collection(db, "cards"), where("listId", "==", listId));
+  const querySnapshot = await getDocs(q);
+  const cards = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  return cards;
+};
+
+export const getCard = async (id) => {
+  const docRef = doc(db, "cards", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error("No card found with the given id");
+  }
+
+  return { id: docSnap.id, ...docSnap.data() };
 };
 
 // Authentication-related functions
