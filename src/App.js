@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 
 import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 import SignUp from "./pages/Signup";
 import SignIn from "./pages/Signin";
 import Board from "./pages/Board";

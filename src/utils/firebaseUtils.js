@@ -1,5 +1,12 @@
 import { app, db, auth } from "../firebase.config";
-import { collection, doc, addDoc, getDocs, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  addDoc,
+  getDocs,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { query, where } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
@@ -18,8 +25,7 @@ export const createBoard = async (boardData) => {
     });
     // After the list is created, create a default card for the list
     await createCard({
-      title: "Card Title",
-      description: "Card Description",
+      title: "Enter a title for this card...",
       listId,
     });
     return docRef.id;
@@ -35,7 +41,6 @@ export const getBoards = async () => {
     ...doc.data(),
   }));
 
-  console.log(boards);
   return boards;
 };
 
@@ -111,6 +116,20 @@ export const getCard = async (id) => {
   }
 
   return { id: docSnap.id, ...docSnap.data() };
+};
+
+export const updateCard = async (id, cardData) => {
+  const docRef = doc(db, "cards", id);
+  await updateDoc(docRef, cardData);
+};
+
+export const addCardToList = async (listId, cardData) => {
+  const cardRef = await addDoc(collection(db, "cards"), {
+    ...cardData,
+    listId,
+  });
+
+  return cardRef;
 };
 
 // Authentication-related functions
