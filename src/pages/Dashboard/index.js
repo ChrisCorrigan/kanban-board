@@ -11,8 +11,6 @@ function Dashboard() {
     // Fetch the user's boards from the database and set them in state
     const fetchBoards = async () => {
       const fetchedBoards = await getBoards();
-      console.log("fetchedBoards", fetchedBoards);
-
       setBoards(fetchedBoards);
     };
 

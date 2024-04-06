@@ -18,20 +18,28 @@ export const createBoard = async (boardData) => {
   // Add a new board with a generated ID
   try {
     const docRef = await addDoc(collection(db, "boards"), boardData);
-    // After the board is created, create a default list for the board
-    const listId = await createList({
-      title: "List Title",
-      boardId: docRef.id,
-    });
-    // After the list is created, create a default card for the list
-    await createCard({
-      title: "Enter a title for this card...",
-      listId,
-    });
-    return docRef.id;
+
+    // After the board is created, create 4 default lists, each with a default card
+    // the lists will be named "To Do", "In Progress", "Testing", and "Done"
+    const listNames = ["To Do", "In Progress", "Testing", "Done"];
+
+    for (const name of listNames) {
+      const listId = await createList({
+        title: name,
+        boardId: docRef.id,
+      });
+
+      // After the list is created, create a default card for the list
+      await createCard({
+        title: "Enter a title for this card...",
+        listId,
+      }); 
+    }
+
+    return docRef.id;  
   } catch (error) {
     console.error("Error creating board: ", error);
-  }
+  }  
 };
 
 export const getBoards = async () => {
