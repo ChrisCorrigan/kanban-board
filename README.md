@@ -1,6 +1,7 @@
 # This is a project to help me learn and practice modern web app development. It will utilize:
 
 - React.js
+- Vite
 - React router
 - Firebase for data storage
 - Tailwind for styling
