@@ -27,7 +27,7 @@ const Board = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="bg-white p-6 min-h-48">
       <h2>{board?.title}</h2>
       <p>{board?.description}</p>
       {lists.map((list) => (

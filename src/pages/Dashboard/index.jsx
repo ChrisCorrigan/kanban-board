@@ -24,21 +24,23 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex flex-col h-screen">
-      <div className="flex flex-grow">
-        <Sidebar />
-        <div className="flex-grow p-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h1 className="text-2xl font-bold">Your Boards</h1>
-              <Link
-                to="/createboard"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Create New Board
-              </Link>
+    <div className="bg-white min-h-48"> 
+      <div className="flex flex-col h-screen">
+        <div className="flex flex-grow">
+          <Sidebar />
+          <div className="flex-grow p-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-bold">Your Boards</h1>
+                <Link
+                  to="/createboard"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Create New Board
+                </Link>
+              </div>
+              <BoardList boards={boards} onDeleteBoard={handleDeleteBoard} />
             </div>
-            <BoardList boards={boards} onDeleteBoard={handleDeleteBoard} />
           </div>
         </div>
       </div>

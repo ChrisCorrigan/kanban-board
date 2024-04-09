@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <nav className="bg-gray-800 p-4 text-white">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container">
         <nav className="flex">
           {userLoggedIn ? (
             <>
@@ -28,10 +28,10 @@ function Header() {
             </>
           ) : (
             <>
-              <Link to="/login" className="p-4">
+              <Link to="/login" className="py-2 px-4">
                 Login
               </Link>
-              <Link to="/signup" className="p-4">
+              <Link to="/signup" className="py-2 px-4">
                 Register for a new account
               </Link>
             </>
