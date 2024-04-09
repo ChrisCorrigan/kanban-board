@@ -25,7 +25,7 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div className="bg-white p-6 min-h-48">
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
 
       <h1>Welcome to the Signup Page</h1>

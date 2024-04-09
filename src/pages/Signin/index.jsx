@@ -25,7 +25,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="bg-white p-6 min-h-48">
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
       <h1>Welcome to the Login Page</h1>
       <form onSubmit={handleLogin}>

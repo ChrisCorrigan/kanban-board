@@ -7,7 +7,7 @@ function Home() {
   const { userLoggedIn } = useAuth();
 
   return (
-    <>
+    <div className="bg-white p-6 min-h-48">
       {userLoggedIn && <Navigate to={"/dashboard"} replace={true} />}
       <section className="prose">
         <h1>Chris's Kanban demo app</h1>
@@ -25,7 +25,7 @@ function Home() {
       <button className="my-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         <Link to="/signup">Get Started</Link>
       </button>
-    </>
+    </div>
   );
 }
 
