@@ -1,10 +1,10 @@
 # This is a project to help me learn and practice modern web app development.
 
-# (for now) you should be able to try out live at: https://kanban-board-d51ae.web.app/
+(for now) you should be able to try out live at: https://kanban-board-d51ae.web.app/
 
-# NOTE: it is a work in progress, and currently UNFINISHED
+NOTE: it is a work in progress, and currently UNFINISHED
 
-# It will utilize:
+It will utilize:
 
 - React.js
 - Vite
