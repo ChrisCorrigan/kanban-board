@@ -1,4 +1,8 @@
-# This is a project to help me learn and practice modern web app development. It will utilize:
+# This is a project to help me learn and practice modern web app development.
+
+# (for now) you should be able to try out live at: https://kanban-board-d51ae.web.app/
+
+# It will utilize:
 
 - React.js
 - Vite
