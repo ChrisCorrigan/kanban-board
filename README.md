@@ -4,7 +4,7 @@
 
 NOTE: it is a work in progress, and currently UNFINISHED
 
-It will utilize:
+## It will utilize:
 
 - React.js
 - Vite
@@ -16,7 +16,8 @@ It will utilize:
 - user authentication
 - react-beautiful-dnd for drag/drop functionality
 
-- Kanban features:
+## Kanban features:
+
 - multiple boards
 - boards contain lists
 - lists contain cards
