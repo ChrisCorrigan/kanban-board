@@ -37,7 +37,7 @@ const Board = () => {
                 <h2 className="text-2xl font-bold">{board?.title}</h2>
                 <p>{board?.description}</p>
               </div>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 px-4">
                 {lists.map((list) => (
                   <List key={list.id} list={list} />
                 ))}
