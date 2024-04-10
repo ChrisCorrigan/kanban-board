@@ -25,28 +25,48 @@ function Login() {
   };
 
   return (
-    <div className="bg-white p-6 min-h-48">
+    <div className="bg-white p-6 min-h-screen flex items-center justify-center">
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
-      <h1>Welcome to the Login Page</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </p>
-      {error && <p>{error}</p>}
+      <div className="w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-5 text-center">Sign in to Chris's Kanban app</h1>
+        <form onSubmit={handleLogin} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Login
+            </button>
+            <p className="inline-block align-baseline font-bold text-sm" href="#">
+              Don't have an account? <Link className="text-blue-500 hover:text-blue-800" to="/signup">Sign up</Link>
+            </p>
+          </div>
+        </form>
+        {error && <p className="text-red-500 text-xs italic">{error}</p>}
+      </div>
     </div>
   );
 }
