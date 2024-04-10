@@ -22,12 +22,14 @@ export const createBoard = async (boardData) => {
 
     // After the board is created, create 4 default lists, each with a default card
     // the lists will be named "To Do", "In Progress", "Testing", and "Done"
+    // the order will be set for each from 1-4
     const listNames = ["To Do", "In Progress", "Testing", "Done"];
 
-    for (const name of listNames) {
+    for (let i = 0; i < listNames.length; i++) {
       const listId = await createList({
-        title: name,
+        title: listNames[i],
         boardId: docRef.id,
+        order: i + 1, // Order is 1-indexed
       });
 
       // After the list is created, create a default card for the list

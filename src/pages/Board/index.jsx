@@ -20,7 +20,9 @@ const Board = () => {
 
     getLists(id)
       .then((listsData) => {
-        setLists(listsData);
+        // Sort the lists by their order field before setting the state
+        const sortedLists = listsData.sort((a, b) => a.order - b.order);
+        setLists(sortedLists);
       })
       .catch((error) => {
         console.log(error.message);
