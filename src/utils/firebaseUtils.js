@@ -6,6 +6,7 @@ import {
   getDocs,
   getDoc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { query, where } from "firebase/firestore";
 import {
@@ -31,7 +32,7 @@ export const createBoard = async (boardData) => {
 
       // After the list is created, create a default card for the list
       await createCard({
-        title: "Enter a title for this card...",
+        title: "New card",
         listId,
       }); 
     }
@@ -103,6 +104,11 @@ export const createCard = async (cardData) => {
     console.error("Error creating card: ", error);
   }
 };
+
+export const deleteCard = async (id) => {
+  const docRef = doc(db, "cards", id);
+  await deleteDoc(docRef);
+}
 
 export const getCards = async (listId) => {
   const q = query(collection(db, "cards"), where("listId", "==", listId));
