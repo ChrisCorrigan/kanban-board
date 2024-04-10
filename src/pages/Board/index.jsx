@@ -35,15 +35,15 @@ const Board = () => {
         <div className="flex flex-grow">
           <Sidebar />
           <div className="flex-grow">
-              <div className="flex justify-between items-center bg-gray-500 text-white p-4 mb-4">
-                <h2 className="text-2xl font-bold">{board?.title}</h2>
-                <p>{board?.description}</p>
-              </div>
-              <div className="flex flex-wrap gap-4 px-4">
-                {lists.map((list) => (
-                  <List key={list.id} list={list} />
-                ))}
-              </div>
+            <div className="flex justify-between items-center bg-gray-500 text-white p-4 mb-4">
+              <h2 className="text-2xl font-bold">{board?.title}</h2>
+              <p>{board?.description}</p>
+            </div>
+            <div className="flex flex-wrap gap-4 px-4">
+              {lists.map((list) => (
+                <List key={list.id} list={list} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
