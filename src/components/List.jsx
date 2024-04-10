@@ -43,10 +43,10 @@ const List = ({ list }) => {
   };
 
   return (
-    <div className="list">
-      <h3>{list.title}</h3>
+    <div className="list bg-white shadow-md rounded px-4 py-6 mb-4 mr-4">
+      <h3 className="font-bold text-xl mb-4">{list.title}</h3>
       {cards.map((card) => (
-        <div className="card" key={card.id}>
+        <div className="card bg-gray-100 rounded px-3 py-2 mb-2" key={card.id}>
           {editingCardId === card.id ? (
             <input
               value={editingCardTitle}
@@ -54,6 +54,7 @@ const List = ({ list }) => {
               onBlur={() => saveCardTitle(card.id)}
               onKeyDown={(e) => e.key === "Enter" && saveCardTitle(card.id)}
               autoFocus
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           ) : (
             <h4
@@ -61,13 +62,16 @@ const List = ({ list }) => {
                 setEditingCardId(card.id);
                 setEditingCardTitle(card.title);
               }}
+              className="cursor-pointer"
             >
               {card.title}
             </h4>
           )}
         </div>
       ))}
-      <button onClick={addCard}>Add Card</button>
+      <button onClick={addCard} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Add Card
+      </button>
     </div>
   );
 };

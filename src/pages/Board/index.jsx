@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Sidebar from "../../components/Sidebar";
 import { getBoard, getLists } from "../../utils/firebaseUtils";
 import List from "../../components/List";
 
@@ -27,12 +28,23 @@ const Board = () => {
   }, [id]);
 
   return (
-    <div className="bg-white p-6 min-h-48">
-      <h2>{board?.title}</h2>
-      <p>{board?.description}</p>
-      {lists.map((list) => (
-        <List key={list.id} list={list} />
-      ))}
+    <div className="bg-white min-h-screen">
+      <div className="flex flex-col h-full">
+        <div className="flex flex-grow">
+          <Sidebar />
+          <div className="flex-grow">
+              <div className="flex justify-between items-center bg-gray-500 text-white p-4 mb-4">
+                <h2 className="text-2xl font-bold">{board?.title}</h2>
+                <p>{board?.description}</p>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                {lists.map((list) => (
+                  <List key={list.id} list={list} />
+                ))}
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
