@@ -1,4 +1,3 @@
-// Card.jsx
 import React from 'react';
 
 const Card = ({ card, editingCardId, editingCardTitle, setEditingCardId, setEditingCardTitle, saveCardTitle, deleteCardHandler }) => (

@@ -36,6 +36,7 @@ export const createBoard = async (boardData) => {
       await createCard({
         title: "New card",
         listId,
+        order: 1, // Order is 1-indexed
       }); 
     }
 
