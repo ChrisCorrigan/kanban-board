@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { createBoard } from "../../utils/firebaseUtils";
 import { useNavigate } from "react-router-dom";
 
 const CreateBoard = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const titleRef = React.createRef();
+  const descriptionRef = React.createRef();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -12,8 +12,8 @@ const CreateBoard = () => {
 
     try {
       await createBoard({ title, description });
-      setTitle("");
-      setDescription("");
+      titleRef.current.value = "";
+      descriptionRef.current.value = "";
       navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
@@ -29,8 +29,8 @@ const CreateBoard = () => {
           <input
             id="title"
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            ref={titleRef} 
+            value={titleRef.current?.value}
             required
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
@@ -38,9 +38,9 @@ const CreateBoard = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
           Description:
           <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            id="description" 
+            ref={descriptionRef} 
+            value={descriptionRef.current?.value}
             required
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
