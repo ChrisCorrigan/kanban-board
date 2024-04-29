@@ -14,7 +14,7 @@ NOTE: it is a work in progress, and currently UNFINISHED
 - jest for testing
 - github actions for deployment and continuous integration
 - user authentication
-- react-beautiful-dnd for drag/drop functionality
+- drag/drop functionality for cards and lists
 
 ## Kanban features:
 
