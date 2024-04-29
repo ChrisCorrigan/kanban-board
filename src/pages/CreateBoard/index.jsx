@@ -11,7 +11,7 @@ const CreateBoard = () => {
     event.preventDefault();
 
     try {
-      await createBoard({ title, description });
+      await createBoard({ title: titleRef.current.value, description: descriptionRef.current.value });
       titleRef.current.value = "";
       descriptionRef.current.value = "";
       navigate("/dashboard");
@@ -30,7 +30,6 @@ const CreateBoard = () => {
             id="title"
             type="text"
             ref={titleRef} 
-            value={titleRef.current?.value}
             required
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
@@ -40,8 +39,6 @@ const CreateBoard = () => {
           <textarea
             id="description" 
             ref={descriptionRef} 
-            value={descriptionRef.current?.value}
-            required
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
