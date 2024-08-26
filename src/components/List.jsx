@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getCards, addCardToList, updateCard, deleteCard } from "../utils/firebaseUtils";
 import Card from "./Card";
 
+import {DndContext} from '@dnd-kit/core';
+import {SortableContext} from '@dnd-kit/sortable';
+import {SortableItem} from './SortableItem';
+
 const List = ({ list }) => {
   const [cards, setCards] = useState([]);
   const [editingCardId, setEditingCardId] = useState(null);
