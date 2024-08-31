@@ -1,16 +1,16 @@
-import React from "react";
-import { useAuth } from "../../context/authContext";
-import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import React from 'react'
+import { useAuth } from '../../context/authContext'
+import { Link } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 function Home() {
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn } = useAuth()
 
   return (
     <div className="bg-white p-6 min-h-48">
-      {userLoggedIn && <Navigate to={"/dashboard"} replace={true} />}
+      {userLoggedIn && <Navigate to={'/dashboard'} replace={true} />}
       <section className="prose">
-        <h1>Chris's Kanban demo app</h1>
+        <h1>Chris's Kanban demo app!</h1>
         <p>
           This is a simple Kanban app that allows you to manage your tasks and
           projects efficiently. Create boards, add lists, and track your
@@ -26,7 +26,7 @@ function Home() {
         <Link to="/signup">Get Started</Link>
       </button>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
